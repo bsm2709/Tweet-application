@@ -8,7 +8,7 @@ def home(request):
     return render(request, 'home.html')
 
 def tweet_list(request):
-    tweets = Tweet.objects.all().order_by('-created_at')
+    tweets = Tweet.objects.all().order_by('created_on')
     return render(request, 'tweet_list.html', {'tweets' : tweets})
 
 def tweet_create(request):
