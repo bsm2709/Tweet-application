@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Django migrations
+*/migrations/
+!*/migrations/__init__.py
+
+# SQLite database
+*.sqlite3
+
+# Environment variables
+.env
+.env.*
+
+# VS Code settings
+.vscode/
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# Pytest cache
+.pytest_cache/
+
+# MyPy
+.mypy_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# Static and media files (optional – only ignore if generated at runtime)
+staticfiles/
+media/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
