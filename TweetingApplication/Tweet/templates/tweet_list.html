@@ -1,32 +1,39 @@
 {% extends "layout.html" %}
 
-{% block title %}
-  Tweet list page
-{% endblock  %}
-
+{% block title %}Tweet List{% endblock %}
 
 {% block content %}
-
-
-  <a class="btn btn-primary mb-4 m-2"   href="{% url 'tweet_create' %}">Create a Tweet</a>
-
-  <div class="container row gap-3 ">
-    {% for tweet in tweets %}
-        <div class="card" style="width: 18rem;">
-            {% if tweet.image %}
-              <img src="{{tweet.image.url}}" class="card-img-top" alt="image">
-            {% endif %}
-            <div class="card-body">
-                <h5 class="card-title">{{tweet.user.username}}</h5>
-                <p class="card-text">{{tweet.text}}</p>
-
-                {% if tweet.user == user %}
-                <a href="{% url 'tweet_edit' tweet.id%}" class="btn btn-primary">Edit</a>
-                <a href="{% url 'tweet_edit' tweet.id%}" class="btn btn-danger">Delete</a>
-                {% endif %}
-            </div>
-        </div>
-    {% endfor %}
-      
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">Tweets</h2>
+    <a class="btn btn-primary btn-sm" href="{% url 'tweet_create' %}">+ Create</a>
   </div>
-{% endblock  %}
+
+  <div class="row g-3">
+    {% for tweet in tweets %}
+      <div class="col-md-3 col-sm-6">
+        <div class="card shadow-sm h-100">
+          {% if tweet.image %}
+            <img src="{{ tweet.image.url }}" class="card-img-top" alt="image"
+                 style="height: 250px; object-fit: cover;">
+          {% endif %}
+          <div class="card-body p-2">
+            <h6 class="card-title mb-1 text-primary">@{{ tweet.user.username }}</h6>
+            <p class="card-text small mb-2" style="max-height: 80px; overflow: hidden;">
+              {{ tweet.text }}
+            </p>
+          </div>
+          <div class="card-footer d-flex justify-content-between p-2">
+            {% if tweet.user == user %}
+              <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-sm btn-outline-primary">Edit</a>
+              <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-sm btn-outline-danger">Del</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">No tweets yet. Be the first to post!</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
